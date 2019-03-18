@@ -1,6 +1,7 @@
 package source.sirnigelcogs.cabintown;
 
 import java.util.Scanner;
+import java.util.HashMap;
 
 public class CabinTown {
 
@@ -32,6 +33,14 @@ public class CabinTown {
 		pl(room.getTitle());
 		pl(room.getDesc());
 		pl("");
+		HashMap<String, Item> items = room.getItemList();
+		if (!items.isEmpty()) {
+			pl("");
+			pl("You also see here:");
+			for (Item item : items.values()) {
+				pl(item.getTitle());
+			}
+		}
 		pl("Obvious Exits:");
 		int[] exits = room.getExits();
 		if (exits[Room.N] != 0) pl("North ");

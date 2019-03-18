@@ -16,7 +16,8 @@ public class Map {
 		
 		var room = new Room("A Test Room", "This is a test room.");
 		room.setExit(Room.N, 3);
-		
+		var item = new Item("item", "A test item", "This is a test item");
+		room.addItem(item.getId(), item);
 		rooms.put(1, room);
 	}
 	

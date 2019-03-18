@@ -25,6 +25,14 @@ public class Room {
 		items = new HashMap<String, Item>();
 		treasureRoom = false;
 	}
+	
+	public void addItem(String id, Item item) {
+		items.put(id, item);
+	}
+	
+	public HashMap<String, Item> getItemList() {
+		return items;
+	}
 
 	public String getDesc() {
 		return description;
