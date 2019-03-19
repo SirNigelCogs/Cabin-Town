@@ -26,6 +26,10 @@ public class Room {
 		treasureRoom = false;
 	}
 	
+	public void addItem(Item item) {
+		items.put(item.getId(), item);
+	}
+	
 	public void addItem(String id, Item item) {
 		items.put(id, item);
 	}

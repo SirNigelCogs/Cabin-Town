@@ -19,6 +19,12 @@ public class Map {
 		var item = new Item("item", "A test item", "This is a test item");
 		room.addItem(item.getId(), item);
 		rooms.put(1, room);
+		
+		room = new Room("A Second Room", "This is a second room.");
+		room.setExit(Room.S, 1);
+		item = new Item("book", "A test book", "This is a test book");
+		room.addItem(item.getId(), item);
+		rooms.put(3, room);
 	}
 	
 	public Room getCurrentRoom() {

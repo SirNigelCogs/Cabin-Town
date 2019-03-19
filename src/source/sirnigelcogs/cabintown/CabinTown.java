@@ -60,6 +60,18 @@ public class CabinTown {
 			if (words[0].equals("L")) {
 				State.look = true;
 			}
+			else if (words[0].equals("N")) {
+				checkExit(Room.N, map);
+			}
+			else if (words[0].equals("S")) {
+				checkExit(Room.S, map);
+			}
+			else if (words[0].equals("E")) {
+				checkExit(Room.E, map);
+			}
+			else if (words[0].equals("W")) {
+				checkExit(Room.W, map);
+			}
 			else if (words[0].equals("I")) {
 				pl("\nYou are carrying:");
 				for (Item item : map.getPlayer().getInv().values()) {
@@ -97,6 +109,16 @@ public class CabinTown {
 					pl("\nYou're not carrying that.");
 				}
 			}
+		}
+	}
+	static void checkExit(int exit, Map map) {
+		var exits = map.getCurrentRoom().getExits();
+		if (exits[exit] != 0) {
+			map.getPlayer().setLocation(exits[exit]);
+			State.look = true;
+		}
+		else {
+			pl("\nThat doesn't appear to be an exit.");
 		}
 	}
 	static void p(String s) {
