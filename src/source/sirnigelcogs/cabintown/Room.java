@@ -13,7 +13,7 @@ public class Room {
 	
 	private int[] exits = new int[4];
 	
-	HashMap<String, Item> items;
+	private HashMap<String, Item> items;
 
 	private String title;
 	private boolean treasureRoom;

@@ -24,6 +24,10 @@ public class Map {
 	public Room getCurrentRoom() {
 		return rooms.get(player.getLocation());
 	}
+	
+	public Player getPlayer() {
+		return player;
+	}
 
 	public HashMap<Integer, Room> getRooms() {
 		return rooms;

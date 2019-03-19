@@ -21,7 +21,7 @@ public class CabinTown {
 			pl("");
 			p(">");
 			String input = in.nextLine().toUpperCase();
-			parse(input.split(" "));
+			parse(input.split(" "), map);
 		}
 
 		in.close();
@@ -30,6 +30,7 @@ public class CabinTown {
 	
 	static void look(Map map) {
 		Room room = map.getCurrentRoom();
+		pl("");
 		pl(room.getTitle());
 		pl(room.getDesc());
 		pl("");
@@ -40,6 +41,7 @@ public class CabinTown {
 			for (Item item : items.values()) {
 				pl(item.getTitle());
 			}
+			pl("");
 		}
 		pl("Obvious Exits:");
 		int[] exits = room.getExits();
@@ -51,12 +53,49 @@ public class CabinTown {
 		State.look = false;
 	}
 
-	static void parse(String s[]) {
+	static void parse(String s[], Map map) {
 		String[] words = WordFilter.filter(s);
 		switch (words.length) {
 		case 1:
-			if (words[0].equals("QUIT")) {
+			if (words[0].equals("L")) {
+				State.look = true;
+			}
+			else if (words[0].equals("I")) {
+				pl("\nYou are carrying:");
+				for (Item item : map.getPlayer().getInv().values()) {
+					pl(item.getTitle());
+				}
+			}
+			else if (words[0].equals("QUIT")) {
 				State.playing = false;
+			}
+		case 2:
+			if (words[0].equals("GET")) {
+				var room = map.getCurrentRoom();
+				var items = room.getItemList();
+				var item = items.get(words[1]);
+				if (item != null) {
+					items.remove(words[1]);
+					map.getPlayer().addItem(item);
+					pl("\nYou get it.");
+				}
+				else {
+					pl("\nYou don't see that here.");
+				}
+			}
+			else if (words[0].equals("DROP")) {
+				var room = map.getCurrentRoom();
+				var player = map.getPlayer();
+				var items = player.getInv();
+				var item = items.get(words[1]);
+				if (item != null) {
+					items.remove(words[1]);
+					room.addItem(item.getId(), item);
+					pl("\nYou drop it.");
+				}
+				else {
+					pl("\nYou're not carrying that.");
+				}
 			}
 		}
 	}

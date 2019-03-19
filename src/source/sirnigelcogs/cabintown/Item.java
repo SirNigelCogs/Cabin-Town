@@ -7,7 +7,7 @@ public class Item {
 	private String title;
 	
 	public Item(String id, String title, String description) {
-		this.setId(id);
+		this.setId(id.toUpperCase());
 		this.setTitle(title);
 		this.setDescription(description);
 	}
