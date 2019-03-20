@@ -81,15 +81,21 @@ public class CabinTown {
 			else if (words[0].equals("QUIT")) {
 				State.playing = false;
 			}
+			break;
 		case 2:
 			if (words[0].equals("GET")) {
 				var room = map.getCurrentRoom();
 				var items = room.getItemList();
 				var item = items.get(words[1]);
 				if (item != null) {
-					items.remove(words[1]);
-					map.getPlayer().addItem(item);
-					pl("\nYou get it.");
+					if (item.isGetable()) {
+						items.remove(words[1]);
+						map.getPlayer().addItem(item);
+						pl("\nYou get it.");
+					}
+					else {
+						pl("\nYou can't lift it.");
+					}
 				}
 				else {
 					pl("\nYou don't see that here.");
@@ -109,6 +115,25 @@ public class CabinTown {
 					pl("\nYou're not carrying that.");
 				}
 			}
+			else if (words[0].equals("ENTER")) {
+				var item = map.getCurrentRoom().getItemList().get(words[1]);
+				if (item != null) {
+					int loc = item.getDoorway();
+					if (loc != 0) {
+						map.getPlayer().setLocation(loc);
+						State.look = true;
+					}
+					else {
+						pl("\nYou can't enter that.");
+					}
+				}
+				else {
+					pl("\nYou don't see that here.");
+				}
+			}
+			break;
+		default:
+			pl("\nWhat?");
 		}
 	}
 	static void checkExit(int exit, Map map) {

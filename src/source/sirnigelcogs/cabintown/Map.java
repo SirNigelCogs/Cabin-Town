@@ -18,6 +18,10 @@ public class Map {
 		room.setExit(Room.N, 3);
 		var item = new Item("item", "A test item", "This is a test item");
 		room.addItem(item.getId(), item);
+		item = new Item("door", "A door", "A wooden door");
+		item.setGetable(false);
+		item.setDoorway(3);
+		room.addItem(item);
 		rooms.put(1, room);
 		
 		room = new Room("A Second Room", "This is a second room.");
