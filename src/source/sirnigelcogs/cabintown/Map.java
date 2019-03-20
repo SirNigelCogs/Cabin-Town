@@ -22,6 +22,7 @@ public class Map {
 		item.setGetable(false);
 		item.setDoorway(3);
 		room.addItem(item);
+		room.setTreasureRoom(true);
 		rooms.put(1, room);
 		
 		room = new Room("A Second Room", "This is a second room.");

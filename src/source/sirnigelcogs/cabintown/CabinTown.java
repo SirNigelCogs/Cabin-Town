@@ -78,6 +78,11 @@ public class CabinTown {
 					pl(item.getTitle());
 				}
 			}
+			else if (words[0].equals("SCORE")) {
+				if (map.getCurrentRoom().isTreasureRoom()) {
+					pl("\nScore:  " + State.score);
+				}
+			}
 			else if (words[0].equals("QUIT")) {
 				State.playing = false;
 			}
@@ -113,6 +118,21 @@ public class CabinTown {
 				}
 				else {
 					pl("\nYou're not carrying that.");
+				}
+			}
+			else if (words[0].equals("EXAMINE")) {
+				var item = map.getCurrentRoom().getItemList().get(words[1]);
+				if (item != null) {
+					pl("\n" + item.getDescription());
+				}
+				else {
+					item = map.getPlayer().getItem(words[1]);
+					if (item != null) {
+						pl("\n" + item.getDescription());
+					}
+					else {
+						pl("\nYou don't see that here.");
+					}
 				}
 			}
 			else if (words[0].equals("ENTER")) {

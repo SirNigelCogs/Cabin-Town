@@ -18,6 +18,9 @@ public class WordFilter {
 			else if (w.equals("INVENTORY")) {
 				list.add("I");
 			}
+			else if (w.equals("INSPECT")) {
+				list.add("EXAMINE");
+			}
 			else if (w.equals("TO") || w.equals("THE")) continue;
 			else {
 				list.add(w);
